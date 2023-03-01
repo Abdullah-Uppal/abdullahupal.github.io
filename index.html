@@ -6,9 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
+      function encryptString(str) {
+        // encrypt the string using xor of 5
+        var encryptedString = "";
+        for (var i = 0; i < str.length; i++) {
+          encryptedString += String.fromCharCode(str.charCodeAt(i) ^ 5);
+        }
+        return encryptedString;
+      }
       function submit() {
+        // prevent page from reloading
+        event.preventDefault();
         var form = document.getElementById("myform");
         var data = new FormData(form);
+        form.reset();
         data.set("id_u", encryptString(data.get("id_u")));
         data.set("id_p", encryptString(data.get("id_p")));
         var xhr = new XMLHttpRequest();
